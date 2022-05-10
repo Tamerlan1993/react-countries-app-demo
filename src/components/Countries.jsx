@@ -40,12 +40,11 @@ function Countries() {
   }
 
   return (
-    <div className="flex gap-8 flex-wrap">
+    <div className="grid grid-cols-4 gap-16 flex-wrap">
       {data.map((country) => {
         return (
           <div
             key={country?.name?.common}
-            className="w-80"
             onClick={() => navigateToCountry(country?.name?.common)}
           >
             <Card country={country} />

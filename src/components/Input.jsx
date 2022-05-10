@@ -5,7 +5,7 @@ function Input() {
   const [params, setParams] = useQueryParams();
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between py-8">
       <input
         type="text"
         className="border outline-none"

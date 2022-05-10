@@ -4,7 +4,7 @@ function Card({ country }) {
   return (
     <div className="country card w-full overflow-hidden shadow-lg rounded-lg cursor-pointer shadow-gray-400">
       <img
-        className="w-full object-cover h-48 overflow-hidden"
+        className="w-full object-cover h-48 overflow-hidden shadow"
         src={country?.flags?.svg}
         alt="flag"
       />

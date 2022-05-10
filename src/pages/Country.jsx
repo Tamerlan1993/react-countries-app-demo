@@ -28,7 +28,7 @@ function Country() {
 
   return (
     <>
-      <Link to="/">
+      <Link to="/" className="inline-block py-16 ">
         <button className="border py-3 px-16">Back</button>
       </Link>
       <div>
@@ -44,13 +44,14 @@ function Country() {
             topLevelDomain,
             currencies,
             languages,
+            borders = [],
           }) => {
             return (
               <div key={name?.common} className="flex">
-                <div className="flag">
+                <div className="flag w-1/2">
                   <img src={flags?.svg} alt="svg" />
                 </div>
-                <div className="content">
+                <div className="content pt-16 pl-16">
                   <h2 className="p">{name?.common}</h2>
                   <section className="flex details-block">
                     <section className="details-block-one">
@@ -92,6 +93,11 @@ function Country() {
                       </p>
                     </section>
                   </section>
+                  <div>
+                    <span className="details-span">Border:</span>{" "}
+                    {borders?.length > 0 &&
+                      borders.map((border) => <p>{border}</p>)}
+                  </div>
                 </div>
               </div>
             );

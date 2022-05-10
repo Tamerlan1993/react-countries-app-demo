@@ -4,10 +4,10 @@ import Input from "../components/Input";
 
 function CountriesPage() {
   return (
-    <>
+    <div>
       <Input />
       <Countries />
-    </>
+    </div>
   );
 }
 
