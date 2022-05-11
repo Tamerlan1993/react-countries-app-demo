@@ -26,7 +26,7 @@ function Country() {
   return (
     <>
       <Link to="/" className="inline-block py-16">
-        <button className="border py-3 px-12 shadow bg-white rounded-lg flex items-center gap-4">
+        <button className="py-3 px-12 shadow bg-white rounded-lg flex items-center gap-4 dark:bg-Dark_Blue">
           <HiArrowNarrowLeft size={24} />
           Back
         </button>
@@ -46,10 +46,8 @@ function Country() {
             borders = [],
           }) => {
             return (
-              <div key={name?.common} className="block sm:grid grid-cols-2">
-                <div className="">
-                  <img src={flags?.svg} alt="svg" />
-                </div>
+              <div key={name?.common} className="block sm:grid grid-cols-2 mb-16">
+                <img className="h-full object-cover" src={flags?.svg} alt="svg" />
                 <div className="content pt-16 pl-16">
                   <h1 className="text-4xl font-bold mb-7">{name?.common}</h1>
                   <section className="block sm:flex justify-between w-full">
@@ -98,7 +96,7 @@ function Country() {
                       <div className="flex gap-8">
                         {borders.map((border) => (
                           <p
-                            className="bg-white px-4 py-2 shadow cursor-pointer"
+                            className="bg-white dark:bg-Dark_Blue px-4 py-2 shadow cursor-pointer"
                             key={border}
                           >
                             {border}
