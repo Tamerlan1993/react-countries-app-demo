@@ -1,32 +1,68 @@
 import React from "react";
+import { ImSearch } from "react-icons/im";
 import { useQueryParams } from "../hooks/useQueryParams";
+import Select from "react-select";
+
+const options = [
+  { value: "africa", label: "Africa" },
+  { value: "americas", label: "Americas" },
+  { value: "asia", label: "Asia" },
+  { value: "europe", label: "Europe" },
+  { value: "oceania", label: "Oceania" },
+];
+
+const customSelectStyles = {
+  control(provided) {
+    return {
+      ...provided,
+      height: "100%",
+      border: 0,
+      outline: 0,
+      borderRadius: ".75rem",
+    };
+  },
+  container(provided) {
+    return {
+      ...provided,
+      borderRadius: ".75rem",
+    };
+  },
+  indicatorSeparator(provided) {
+    return {
+      ...provided,
+      display: "none",
+    };
+  },
+};
 
 function Input() {
   const [params, setParams] = useQueryParams();
 
   return (
     <div className="flex justify-between py-8">
-      <input
-        type="text"
-        className="border outline-none"
-        value={params?.filter ?? ""}
-        onChange={(e) => setParams({ filter: e.target.value })}
-      />
-      <select
-        className="border outline-none"
-        value={params?.region}
-        onChange={(e) => {
-          console.log(e.target.value);
-          setParams({ region: e.target.value });
+      <div className="flex items-center bg-white pl-8 w-[30rem] rounded-xl shadow-lg overflow-hidden">
+        <ImSearch size={18} className="text-Dark_Gray" />
+        <input
+          type="text"
+          placeholder="Search for country..."
+          className="p-5 outline-none text-sm font-bold w-full"
+          value={params?.filter ?? ""}
+          onChange={(e) => setParams({ filter: e.target.value })}
+        />
+      </div>
+      <Select
+        placeholder="Filter by region"
+        options={options}
+        value={options.find((option) => option.value === params?.region)}
+        onChange={(context) => {
+          setParams({
+            region: context.value,
+          });
+          return context;
         }}
-      >
-        <option value=""></option>
-        <option value="africa">Africa</option>
-        <option value="americas">Americas</option>
-        <option value="asia">Asia</option>
-        <option value="europe">Europe</option>
-        <option value="oceania">Oceania</option>
-      </select>
+        className="w-[12rem] shadow-lg"
+        styles={customSelectStyles}
+      />
     </div>
   );
 }

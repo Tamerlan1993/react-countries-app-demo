@@ -96,7 +96,7 @@ function Country() {
                   <div>
                     <span className="details-span">Border:</span>{" "}
                     {borders?.length > 0 &&
-                      borders.map((border) => <p>{border}</p>)}
+                      borders.map((border) => <p key={border}>{border}</p>)}
                   </div>
                 </div>
               </div>

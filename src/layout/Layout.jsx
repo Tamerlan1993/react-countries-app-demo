@@ -6,7 +6,7 @@ function Layout() {
   return (
     <>
       <Header />
-      <div className="px-16">
+      <div className="px-16 bg-Very_Light_Gray">
         <Outlet />
       </div>
     </>
