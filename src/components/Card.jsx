@@ -8,11 +8,18 @@ function Card({ country }) {
         src={country?.flags?.svg}
         alt="flag"
       />
-      <div className="info pt-8 pb-12 px-4">
-        <h1 className="name font-bold">{country?.name?.common}</h1>
-        <p className="population">{country?.population}</p>
-        <p className="region">{country?.region}</p>
-        <p className="capital">
+      <div className="info pt-8 pb-12 px-7">
+        <h2 className="text-xl leading-5 mb-4 font-bold">
+          {country?.name?.common}
+        </h2>
+        <p className="my-2">
+          <span className="font-bold">Population</span>: {country?.population}
+        </p>
+        <p className="my-2">
+          <span className="font-bold">Region</span>: {country?.region}
+        </p>
+        <p className="my-2">
+          <span className="font-bold">Capital</span>:
           {country?.capital?.map((c) => (
             <span key={c}>{c}</span>
           ))}

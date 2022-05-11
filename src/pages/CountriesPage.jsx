@@ -4,7 +4,7 @@ import Input from "../components/Input";
 
 function CountriesPage() {
   return (
-    <div>
+    <div className="text-[14px]">
       <Input />
       <Countries />
     </div>
