@@ -39,8 +39,8 @@ function Input() {
   const [params, setParams] = useQueryParams();
 
   return (
-    <div className="flex justify-between py-8">
-      <div className="flex items-center bg-white pl-8 w-[30rem] rounded-xl shadow-lg overflow-hidden">
+    <div className="block sm:flex justify-between py-8 ">
+      <div className="w-auto flex items-center bg-white pl-8 sm:w-[30rem] rounded-xl shadow-lg overflow-hidden">
         <ImSearch size={18} className="text-Dark_Gray" />
         <input
           type="text"
@@ -60,7 +60,7 @@ function Input() {
           });
           return context;
         }}
-        className="w-[12rem] shadow-lg"
+        className="w-[12rem] shadow-lg h-[60px] mt-8 sm:mt-0"
         styles={customSelectStyles}
       />
     </div>

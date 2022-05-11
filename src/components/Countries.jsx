@@ -40,10 +40,11 @@ function Countries() {
   }
 
   return (
-    <div className="grid grid-cols-4 gap-16 flex-wrap">
+    <div className="flex flex-wrap justify-between gap-12">
       {data.map((country) => {
         return (
           <div
+            className="w-[18rem] mx-auto sm:mx-0"
             key={country?.name?.common}
             onClick={() => navigateToCountry(country?.name?.common)}
           >
