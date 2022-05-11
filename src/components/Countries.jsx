@@ -10,7 +10,7 @@ function Countries() {
   const navigate = useNavigate();
   const [params] = useQueryParams();
 
-  let { data, isLoading } = useQuery(
+  let { data, isLoading, isFetching } = useQuery(
     "Countries",
     () => {
       return axios({ url: "all" });
@@ -31,7 +31,7 @@ function Countries() {
     }
   );
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return <Loading />;
   }
 

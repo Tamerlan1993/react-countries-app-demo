@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
 import { axios } from "../api";
 import Loading from "../components/Loading";
+import { HiArrowNarrowLeft } from "react-icons/hi";
 
 function Country() {
   const { name } = useParams();
@@ -18,18 +19,17 @@ function Country() {
     }
   );
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   if (isFetching) {
     return <Loading />;
   }
 
   return (
     <>
-      <Link to="/" className="inline-block py-16 ">
-        <button className="border py-3 px-16">Back</button>
+      <Link to="/" className="inline-block py-16">
+        <button className="border py-3 px-12 shadow bg-white rounded-lg flex items-center gap-4">
+          <HiArrowNarrowLeft size={24} />
+          Back
+        </button>
       </Link>
       <div>
         {data?.map(
@@ -39,7 +39,6 @@ function Country() {
             flags,
             population,
             region,
-            nativeName,
             subregion,
             topLevelDomain,
             currencies,
@@ -47,56 +46,68 @@ function Country() {
             borders = [],
           }) => {
             return (
-              <div key={name?.common} className="flex">
-                <div className="flag w-1/2">
+              <div key={name?.common} className="block sm:grid grid-cols-2">
+                <div className="">
                   <img src={flags?.svg} alt="svg" />
                 </div>
                 <div className="content pt-16 pl-16">
-                  <h2 className="p">{name?.common}</h2>
-                  <section className="flex details-block">
+                  <h1 className="text-4xl font-bold mb-7">{name?.common}</h1>
+                  <section className="block sm:flex justify-between w-full">
                     <section className="details-block-one">
-                      <p className="p">
-                        <span className="details-span">Native Name:</span>{" "}
-                        {nativeName}
+                      <p className="my-4">
+                        <span className="font-bold">Native Name:</span>{" "}
+                        {name?.official}
                       </p>
-                      <p className="p">
-                        <span className="details-span">Population:</span>{" "}
+                      <p className="my-4">
+                        <span className="font-bold">Population:</span>{" "}
                         {population.toLocaleString()}
                       </p>
-                      <p className="p">
-                        <span className="details-span">Region:</span> {region}
+                      <p className="my-4">
+                        <span className="font-bold">Region:</span> {region}
                       </p>
-                      <p className="p">
-                        <span className="details-span">Sub Region:</span>{" "}
+                      <p className="my-4">
+                        <span className="font-bold">Sub Region:</span>{" "}
                         {subregion}
                       </p>
-                      <p className="p">
-                        <span className="details-span">Capital:</span> {capital}
+                      <p className="my-4">
+                        <span className="font-bold">Capital:</span> {capital}
                       </p>
                     </section>
                     <section className="details-block-two">
-                      <p className="p">
-                        <span className="details-span">Top Level Domain:</span>{" "}
+                      <p className="my-4">
+                        <span className="font-bold">Top Level Domain:</span>{" "}
                         {topLevelDomain}
                       </p>
-                      <p className="p">
-                        <span className="details-span">Currencies:</span>{" "}
+                      <p className="my-4">
+                        <span className="font-bold">Currencies:</span>{" "}
                         {Object.keys(currencies).map(
                           (currency) => currencies[currency]?.name
                         )}
                       </p>
-                      <p className="p">
-                        <span className="details-span">Languages:</span>{" "}
-                        {Object.keys(languages).map(
-                          (language) => languages[language]?.name
-                        )}
+                      <p className="my-4">
+                        <span className="font-bold">Languages:</span>{" "}
+                        {Object.keys(languages)
+                          .map((language) => languages?.[language])
+                          .join(", ")}
                       </p>
                     </section>
                   </section>
                   <div>
-                    <span className="details-span">Border:</span>{" "}
-                    {borders?.length > 0 &&
-                      borders.map((border) => <p key={border}>{border}</p>)}
+                    <span className="font-bold mb-4 inline-block">Border:</span>{" "}
+                    {borders?.length > 0 ? (
+                      <div className="flex gap-8">
+                        {borders.map((border) => (
+                          <p
+                            className="bg-white px-4 py-2 shadow cursor-pointer"
+                            key={border}
+                          >
+                            {border}
+                          </p>
+                        ))}
+                      </div>
+                    ) : (
+                      <p>No borders</p>
+                    )}
                   </div>
                 </div>
               </div>
